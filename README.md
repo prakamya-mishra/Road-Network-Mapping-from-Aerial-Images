@@ -1,6 +1,6 @@
 # Road Network Mapping from Aerial Images
 
-This is the implementation of SPIE 2019 paper "Road Network MApping from Aerial Images" created by 
+This is the implementation of SPIE 2019 paper ["Road Network Mapping from Aerial Images"](https://doi.org/10.1117/12.2529005) created by 
 <a href="https://github.com/suchitj2702" target="_blank">Suchit Jain</a>, <a href="https://github.com/rohanmittal73" target="_blank">Rohan Mittal</a>, <a href="https://prakamya-mishra.github.io/" target="_blank">Prakamya Mishra</a>, <a href="https://twitter.com/AakashSinhaRobo" target="_blank">Aakash Sinnha</a>.
 
 
