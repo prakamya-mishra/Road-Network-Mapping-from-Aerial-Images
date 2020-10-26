@@ -1,0 +1,12 @@
+Flask
+itsdangerous
+Jinja2
+MarkupSafe
+numpy
+opencv-python
+pandas
+Pillow
+python-xmp-toolkit
+scikit-learn
+scipy
+sklearn

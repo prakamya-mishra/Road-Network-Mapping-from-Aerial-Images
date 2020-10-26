@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SmartCityPlanner</title>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" >
+ <link rel="stylesheet" href="static/css/style.css">
+ <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+  <div class="bg-light">
+    <br>
+      <center><span class="mb-0 h1" style="font-size:50px;">Smart City Planner</span></center>
+      <br>
+  </div>
+  <div class="container">
+    <div class="row">
+      <!--<div class="jumbotron jumbotron-fluid">-->
+        <div class="container">
+          <!--<h1 class="display-4">Smart City Planner</h1><br><br><br>-->
+          <b<h2>Our Product</h2></b>
+          <p class="lead">We are developing a web based application for Road feature extraction. This application uses machine learning classification algorithms and computer vision techniques for this process. The application, given an input image outputs the image with the roads segmented along with features such as road length.</p>
+        </div>
+      <!--</div>-->
+    </div>
+    <div class="row justify-content-md-center"><a target="_blank" href="https://drive.google.com/drive/folders/1hj3HgORSvmeC6QL62tIDRuB5gmUa0XVE?usp=sharing"><button style="background-color:#60cde2;border-color:#7ed2e2" class="btn btn-primary">Click here for Example Images</button></a></div>
+    <div class="row justify-content-md-center"><div id="fixedstatus"></div></div>
+    <div class="row justify-content-md-center">
+      <!--<form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">-->
+        <div id="screen" class="form-group">
+        </div>
+      <!--</form>-->
+    </div><br><br><hr>
+    <h1 class="text-center">Mentor</h1>
+    <div class="row justify-content-md-center">
+      <div class="col-md-4 text-center">
+        <div class="card">
+          <img class="card-img-top" src="static/images/team/Aakash.png" alt="Card image cap"><br><br>
+          <div class="card-body">
+            <h5 class="card-title">Aakash Sinha</h5>
+            <p class="card-text">Assistant Professor, Department of Electrical Engineering, Shiv Nadar University</p>
+          </div>
+        </div>
+      </div>
+    </div><br><br><hr>
+    <h1 class="text-center">Team</h1>
+    <div class="row justify-content-md-center">
+      <div class="col-md-4 text-center">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="static/images/team/suchit.png" alt="Card image cap"><br><br>
+          <div class="card-body">
+            <h5 class="card-title">Suchit Jain</h5>
+            <p class="card-text">Sophomore, Electronics and Communication Engineering, Shiv Nadar University</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 text-center">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="static/images/team/rohan.png" alt="Card image cap"><br><br>
+          <div class="card-body">
+            <h5 class="card-title">Rohan Mittal</h5>
+            <p class="card-text">Sophomore, Computer Science Engineering, Shiv Nadar University</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 text-center">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="static/images/team/prakamya.png" alt="Card image cap"><br><br>
+          <div class="card-body">
+            <h5 class="card-title">Prakamya Mishra</h5>
+            <p class="card-text">Sophomore, Computer Science Engineering, Shiv Nadar University</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+<!--<form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+      <input id="file-picker" type="file" name="file" accept="image/*" multiple>
+      <div id="msg"></div>
+      <input type="submit" value="Upload!" id="upload-button">
+    </div>
+</form>-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" ></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" ></script>
+<script type="text/javascript" src="static/js/custom.js"></script>
+<!--<script src="../static/js/mytemplate.js"></script>-->
+<script>
+console.log("templatejs is called rohit");
+
+var resultplate=`
+    <h1>Image Processed</h1>
+    <div>
+    <div class="justify-content-md-center" style="margin-top:40px;" ><a target="_blank" href="gallery"><button style="background-color:#60cde2;border-color:#7ed2e2" class="btn btn-primary">View Results</button></a>
+    <button onclick="loaduploadanother()" style="background-color:#60cde2;border-color:#7ed2e2;margin-left:30px;" class="btn btn-primary">Upload Another</button></div>
+
+    </div>`;
+
+var uploadplate=`<label >Image upload</label><br>
+<input id="file-picker" style="background-color:white;border-color:#7ed2e2" type="file" name="file" accept="image/*" class="form-control-file"><br>
+<div id="msg" style="backgroung: white;"></div><br>
+<button onclick="upload()" style="background-color:#60cde2;border-color:#7ed2e2" class="btn btn-primary" value="Upload!" id="upload-button">Submit</button>
+`;
+
+var loadingplate=`
+<div class="gifholder">
+<div id="status">
+ Processing the image......
+</div>
+ <div class="w3-container w3-hide-small">
+    <img src="../static/images/loading.gif" width="544px" height="200px" style="margin-top:20px"></img>
+ </div>
+ <div id="status">
+  This may take 3 to 4 minutes depending on the image......take a coffee break!!
+ </div>
+ <div class="w3-container w3-hide-large w3-hide-medium">
+    <img src="../static/images/loading.gif" width="100%" style="margin-top:20px;background-color:rgb(99,203,255"></img>
+ </div>
+</div>
+`;
+</script>
+<script>
+  function process()
+  {
+    var xml=new XMLHttpRequest();
+    xml.onreadystatechange=function(){
+      if(this.readyState==4 && this.status==200){
+        console.log("processing finished");
+        document.getElementById('screen').innerHTML=resultplate;
+      }
+    };
+      xml.open("GET","/imgprocess");
+      xml.send();
+  }
+  function upload()
+  {
+    var formData =new FormData();
+    file=document.getElementById("file-picker");
+    file=file.files[0];
+    formData.append("file",file);
+    var xml=new XMLHttpRequest();
+    xml.onreadystatechange=function(){
+      if(this.readyState==4 && this.status==200){
+        console.log("uploading finished")
+        process();
+        document.getElementById('fixedstatus').innerHTML="Done uploading<br>";
+        console.log("processing started");
+        document.getElementById('screen').innerHTML=loadingplate;
+      }
+    };
+    xml.open("POST","/upload");
+    xml.send(formData);
+    document.getElementById('fixedstatus').innerHTML="<h5>uploading.....</h5>";
+    console.log("uploading started")
+
+  }
+  function loaduploadanother(){
+    document.getElementById("screen").innerHTML=uploadplate;
+  }
+   document.getElementById('screen').innerHTML=uploadplate;
+</script>
+</body>
+</html>
